@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 abstract class ParserModel {
-  void parse();
+  void parse(BuildContext context);
 }

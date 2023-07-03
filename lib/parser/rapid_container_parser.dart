@@ -1,9 +1,10 @@
 library rapid;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:rapid/helper/rapid_color_helper.dart';
 import 'package:rapid/parser/configurations/rapid_container_configuration.dart';
 import 'package:rapid/parser/parser_model.dart';
+import 'package:rapid/pattern/rapid_color_pattern.dart';
 
 enum RapidContainerStyleType {
   bgColors,
@@ -18,18 +19,20 @@ enum RapidContainerStyleType {
 class RapidContainerParser implements ParserModel {
   final String styles;
   final BuildContext context;
+  final RapidColorHelper colorHelper = RapidColorHelper();
+
+  Size? size;
+  BoxConstraints? boxConstraints;
 
   BoxDecoration boxDecoration = const BoxDecoration();
 
   RapidContainerParser({
     required this.styles,
     required this.context,
-  }) {
-    parse();
-  }
+  });
 
   @override
-  void parse() {
+  void parse(BuildContext context) {
     final List<String> mappedStyles = styles.split(" ");
 
     for (var i = 0; i < mappedStyles.length; i++) {
@@ -38,6 +41,8 @@ class RapidContainerParser implements ParserModel {
         final RapidContainerStyleType type = determineStyle(style);
 
         if (type == RapidContainerStyleType.bgColors) {
+          boxDecoration =
+              boxDecoration.copyWith(color: bgBackgroundColor(style));
         } else if (type == RapidContainerStyleType.borderColors) {
         } else if (type == RapidContainerStyleType.spacing) {
         } else if (type == RapidContainerStyleType.shadows) {
@@ -71,8 +76,7 @@ class RapidContainerParser implements ParserModel {
   }
 
   Color bgBackgroundColor(String style) {
-    final RegExp pattern = RegExp(r"^[a-z]-[a-z]-\d+$|^[a-z]-[a-z]$");
-    if (pattern.hasMatch(style)) {
+    if (RapidColorPattern.pattern.hasMatch(style)) {
       final split = style.split("-");
       if (split.length == 2) {
         try {
@@ -82,6 +86,8 @@ class RapidContainerParser implements ParserModel {
             return Colors.white;
           } else if (stringColor == "black") {
             return Colors.black;
+          } else if (colorHelper.isValidColor(stringColor)) {
+            return colorHelper.fromString(stringColor) ?? Colors.transparent;
           } else if (stringColor == "transparent") {
             return Colors.transparent;
           }
@@ -91,14 +97,25 @@ class RapidContainerParser implements ParserModel {
           final stringColor = split[1];
           final colorValue = split[2];
 
-          if (kDebugMode) {
-            print(stringColor);
-            print(colorValue);
+          if (colorHelper.isValidColor(stringColor)) {
+            return colorHelper.fromMaterialColor(
+              colorHelper.fromString(stringColor),
+              colorValue,
+            );
           }
         } on RangeError catch (_) {}
       }
     }
 
     return Colors.transparent;
+  }
+
+  void updateBoxConstraints(BoxConstraints constraints) {
+    boxConstraints = constraints;
+    updateSize(constraints.maxWidth, constraints.maxHeight);
+  }
+
+  void updateSize(double width, double height) {
+    size = Size(width, height);
   }
 }
