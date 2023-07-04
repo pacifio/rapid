@@ -1,5 +1,3 @@
-library rapid;
-
 import 'package:flutter/material.dart';
 
 class RapidColorHelper {

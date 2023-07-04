@@ -1,5 +1,3 @@
-library rapid;
-
 class RapidContainerConfigurations {
   static const List<String> acceptedBackgroundColors = [
     // solid colors
@@ -259,7 +257,261 @@ class RapidContainerConfigurations {
     "bg-yellow-900",
   ];
   static const List<String> acceptedBorderColors = [
+    // solid colors
+
+    // no variants
+    "border-white",
     "border-black",
+    "border-transparent",
+
+    // with variants
+    "border-amber",
+    "border-blue",
+    "border-blackgrey",
+    "border-brown",
+    "border-cyan",
+    "border-deeporange",
+    "border-deeppurple",
+    "border-green",
+    "border-grey",
+    "border-indigo",
+    "border-lightblue",
+    "border-lightgreen",
+    "border-lime",
+    "border-orange",
+    "border-pink",
+    "border-purple",
+    "border-red",
+    "border-teal",
+    "border-yellow",
+
+    // amber
+    "border-amber-50",
+    "border-amber-100",
+    "border-amber-200",
+    "border-amber-300",
+    "border-amber-400",
+    "border-amber-500",
+    "border-amber-600",
+    "border-amber-7000",
+    "border-amber-800",
+    "border-amber-900",
+
+    // blue
+    "border-blue-50",
+    "border-blue-100",
+    "border-blue-200",
+    "border-blue-300",
+    "border-blue-400",
+    "border-blue-500",
+    "border-blue-600",
+    "border-blue-7000",
+    "border-blue-800",
+    "border-blue-900",
+
+    // amber
+    "border-bluegrey-50",
+    "border-bluegrey-100",
+    "border-bluegrey-200",
+    "border-bluegrey-300",
+    "border-bluegrey-400",
+    "border-bluegrey-500",
+    "border-bluegrey-600",
+    "border-bluegrey-7000",
+    "border-bluegrey-800",
+    "border-bluegrey-900",
+
+    // brown
+    "border-brown-50",
+    "border-brown-100",
+    "border-brown-200",
+    "border-brown-300",
+    "border-brown-400",
+    "border-brown-500",
+    "border-brown-600",
+    "border-brown-7000",
+    "border-brown-800",
+    "border-brown-900",
+
+    // cyan
+    "border-cyan-50",
+    "border-cyan-100",
+    "border-cyan-200",
+    "border-cyan-300",
+    "border-cyan-400",
+    "border-cyan-500",
+    "border-cyan-600",
+    "border-cyan-7000",
+    "border-cyan-800",
+    "border-cyan-900",
+
+    // deeporange
+    "border-deeporange-50",
+    "border-deeporange-100",
+    "border-deeporange-200",
+    "border-deeporange-300",
+    "border-deeporange-400",
+    "border-deeporange-500",
+    "border-deeporange-600",
+    "border-deeporange-7000",
+    "border-deeporange-800",
+    "border-deeporange-900",
+
+    // deeppurple
+    "border-deeppurple-50",
+    "border-deeppurple-100",
+    "border-deeppurple-200",
+    "border-deeppurple-300",
+    "border-deeppurple-400",
+    "border-deeppurple-500",
+    "border-deeppurple-600",
+    "border-deeppurple-7000",
+    "border-deeppurple-800",
+    "border-deeppurple-900",
+
+    // green
+    "border-green-50",
+    "border-green-100",
+    "border-green-200",
+    "border-green-300",
+    "border-green-400",
+    "border-green-500",
+    "border-green-600",
+    "border-green-7000",
+    "border-green-800",
+    "border-green-900",
+
+    // grey
+    "border-grey-50",
+    "border-grey-100",
+    "border-grey-200",
+    "border-grey-300",
+    "border-grey-400",
+    "border-grey-500",
+    "border-grey-600",
+    "border-grey-7000",
+    "border-grey-800",
+    "border-grey-900",
+
+    // indigo
+    "border-indigo-50",
+    "border-indigo-100",
+    "border-indigo-200",
+    "border-indigo-300",
+    "border-indigo-400",
+    "border-indigo-500",
+    "border-indigo-600",
+    "border-indigo-7000",
+    "border-indigo-800",
+    "border-indigo-900",
+
+    // lightblue
+    "border-lightblue-50",
+    "border-lightblue-100",
+    "border-lightblue-200",
+    "border-lightblue-300",
+    "border-lightblue-400",
+    "border-lightblue-500",
+    "border-lightblue-600",
+    "border-lightblue-7000",
+    "border-lightblue-800",
+    "border-lightblue-900",
+
+    // lightgreen
+    "border-lightgreen-50",
+    "border-lightgreen-100",
+    "border-lightgreen-200",
+    "border-lightgreen-300",
+    "border-lightgreen-400",
+    "border-lightgreen-500",
+    "border-lightgreen-600",
+    "border-lightgreen-7000",
+    "border-lightgreen-800",
+    "border-lightgreen-900",
+
+    // lime
+    "border-lime-50",
+    "border-lime-100",
+    "border-lime-200",
+    "border-lime-300",
+    "border-lime-400",
+    "border-lime-500",
+    "border-lime-600",
+    "border-lime-7000",
+    "border-lime-800",
+    "border-lime-900",
+
+    // orange
+    "border-orange-50",
+    "border-orange-100",
+    "border-orange-200",
+    "border-orange-300",
+    "border-orange-400",
+    "border-orange-500",
+    "border-orange-600",
+    "border-orange-7000",
+    "border-orange-800",
+    "border-orange-900",
+
+    // pink
+    "border-pink-50",
+    "border-pink-100",
+    "border-pink-200",
+    "border-pink-300",
+    "border-pink-400",
+    "border-pink-500",
+    "border-pink-600",
+    "border-pink-7000",
+    "border-pink-800",
+    "border-pink-900",
+
+    // purple
+    "border-purple-50",
+    "border-purple-100",
+    "border-purple-200",
+    "border-purple-300",
+    "border-purple-400",
+    "border-purple-500",
+    "border-purple-600",
+    "border-purple-7000",
+    "border-purple-800",
+    "border-purple-900",
+
+    // red
+    "border-red-50",
+    "border-red-100",
+    "border-red-200",
+    "border-red-300",
+    "border-red-400",
+    "border-red-500",
+    "border-red-600",
+    "border-red-7000",
+    "border-red-800",
+    "border-red-900",
+
+    // teal
+    "border-teal-50",
+    "border-teal-100",
+    "border-teal-200",
+    "border-teal-300",
+    "border-teal-400",
+    "border-teal-500",
+    "border-teal-600",
+    "border-teal-7000",
+    "border-teal-800",
+    "border-teal-900",
+
+    // yellow
+    "border-yellow-50",
+    "border-yellow-100",
+    "border-yellow-200",
+    "border-yellow-300",
+    "border-yellow-400",
+    "border-yellow-500",
+    "border-yellow-600",
+    "border-yellow-7000",
+    "border-yellow-800",
+    "border-yellow-900",
   ];
 
   static const List<String> acceptedSpacing = [
@@ -272,7 +524,11 @@ class RapidContainerConfigurations {
     "radius-xs",
   ];
   static const List<String> acceptedBorders = [
-    "border-black",
+    "border-0",
+    "border-2",
+    "border-4",
+    "border-8",
+    "border",
   ];
 
   static final List<String> acceptedStyles =

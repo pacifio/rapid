@@ -1,5 +1,3 @@
-library rapid;
-
 import 'package:flutter/material.dart';
 import 'package:rapid/parser/rapid_container_parser.dart';
 
@@ -23,8 +21,10 @@ class RapidContainer extends StatelessWidget {
     return Container(
       key: key,
       decoration: parser.boxDecoration,
-      width: parser.size?.width,
-      height: parser.size?.height,
+      // width: parser.size?.width,
+      // height: parser.size?.height,
+      width: 200,
+      height: 100,
       child: LayoutBuilder(builder: (context, constrains) {
         parser.updateBoxConstraints(constrains);
         return ConstrainedBox(
