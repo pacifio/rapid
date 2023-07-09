@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rapid/helper/rapid_color_helper.dart';
+import 'package:rapid/helper/rapid_prefix_helper.dart';
 import 'package:rapid/parser/configurations/rapid_container_configuration.dart';
 import 'package:rapid/parser/parser_model.dart';
 
@@ -17,6 +18,7 @@ class RapidContainerParser implements ParserModel {
   final String styles;
   final BuildContext context;
   final RapidColorHelper colorHelper = RapidColorHelper();
+  final RapidPrefixHelper prefixHelper = RapidPrefixHelper();
 
   Size? size;
   BoxConstraints? boxConstraints;
@@ -34,27 +36,75 @@ class RapidContainerParser implements ParserModel {
 
     for (var i = 0; i < mappedStyles.length; i++) {
       final String style = mappedStyles[i];
-      if (isValidStyle(style)) {
-        final RapidContainerStyleType type = determineStyle(style);
+      if (hasPrefix(style)) {
+        final prefix = style.split(":");
+        if (isValidPrefix(prefix[0])) {
+          _apply(prefix[1], prefix[0]);
+        }
+      } else {
+        _apply(style);
+      }
+    }
+  }
 
-        if (type == RapidContainerStyleType.bgColors) {
-          boxDecoration = boxDecoration.copyWith(color: parseColor(style));
-        } else if (type == RapidContainerStyleType.borderColors) {
-          boxDecoration = boxDecoration.copyWith(
+  void _apply(String style, [String? prefix]) {
+    if (isValidStyle(style)) {
+      final RapidContainerStyleType type = determineStyle(style);
+
+      if (type == RapidContainerStyleType.bgColors) {
+        _applyPrefix(
+          style,
+          prefix,
+          () =>
+              boxDecoration = boxDecoration.copyWith(color: parseColor(style)),
+        );
+      } else if (type == RapidContainerStyleType.borderColors) {
+        _applyPrefix(
+          style,
+          prefix,
+          () => boxDecoration = boxDecoration.copyWith(
             border: borderWithColor(
               parseColor(style),
             ),
-          );
-        } else if (type == RapidContainerStyleType.spacing) {
-        } else if (type == RapidContainerStyleType.shadows) {
-        } else if (type == RapidContainerStyleType.radius) {
-        } else if (type == RapidContainerStyleType.borders) {
-          boxDecoration = boxDecoration.copyWith(
-            border: border(style),
-          );
-        }
+          ),
+        );
+      } else if (type == RapidContainerStyleType.spacing) {
+      } else if (type == RapidContainerStyleType.shadows) {
+      } else if (type == RapidContainerStyleType.radius) {
+      } else if (type == RapidContainerStyleType.borders) {
+        _applyPrefix(
+            style,
+            prefix,
+            () => boxDecoration = boxDecoration.copyWith(
+                  border: border(style),
+                ));
       }
     }
+  }
+
+  void _applyPrefix(String style, String? prefix, Function applier) {
+    if (prefix != null) {
+      final RapidPrefixType prefixType =
+          prefixHelper.prefixTypeFromString(prefix);
+
+      if (prefixHelper.isResponsivePrefix(prefixType)) {
+        prefixHelper.applyResponsiveStyle(
+          context: context,
+          applier: applier,
+          prefixType: prefixType,
+        );
+      }
+    } else {
+      applier();
+    }
+  }
+
+  bool hasPrefix(String style) {
+    return style.contains(":");
+  }
+
+  bool isValidPrefix(String style) {
+    return RapidContainerConfigurations.acceptedPrefix.contains(style);
   }
 
   bool isValidStyle(String style) {

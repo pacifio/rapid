@@ -5,10 +5,15 @@ class RapidContainer extends StatelessWidget {
   final String styles;
   final Widget child;
 
+  final double? width;
+  final double? height;
+
   const RapidContainer({
     super.key,
     required this.styles,
     required this.child,
+    this.width,
+    this.height,
   });
 
   @override
@@ -21,17 +26,13 @@ class RapidContainer extends StatelessWidget {
     return Container(
       key: key,
       decoration: parser.boxDecoration,
-      // width: parser.size?.width,
-      // height: parser.size?.height,
-      width: 200,
-      height: 100,
+      width: width ?? parser.size?.width,
+      height: height ?? parser.size?.height,
       child: LayoutBuilder(builder: (context, constrains) {
         parser.updateBoxConstraints(constrains);
         return ConstrainedBox(
           constraints: constrains,
-          child: MouseRegion(
-            child: child,
-          ),
+          child: child,
         );
       }),
     );

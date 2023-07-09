@@ -538,4 +538,20 @@ class RapidContainerConfigurations {
           RapidContainerConfigurations.acceptedShadows +
           RapidContainerConfigurations.acceptedRadius +
           RapidContainerConfigurations.acceptedBorders;
+
+  static const List<String> acceptedSizePrefix = [
+    "mobile",
+    "tab",
+    "laptop",
+    "desktop",
+  ];
+
+  static const List<String> acceptedStatePrefix = [
+    "hover",
+    "drag",
+  ];
+
+  static final List<String> acceptedPrefix =
+      RapidContainerConfigurations.acceptedSizePrefix +
+          RapidContainerConfigurations.acceptedStatePrefix;
 }

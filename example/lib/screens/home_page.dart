@@ -12,7 +12,10 @@ class HomePage extends StatelessWidget {
       ),
       body: const Center(
         child: RapidContainer(
-          styles: "bg-yellow-600 border-4 border-pink-500",
+          width: 200,
+          height: 200,
+          styles:
+              "border-8 laptop:border-4 mobile:bg-green-500 tab:bg-yellow-400 laptop:bg-red-500 desktop:bg-pink-500",
           child: Center(
             child: Text(
               "This is a rapid container",
