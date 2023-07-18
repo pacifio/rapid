@@ -1,3 +1,4 @@
+import 'package:example/screens/todo.dart';
 import 'package:flutter/material.dart';
 import 'package:rapid/rapid.dart';
 
@@ -11,16 +12,11 @@ class HomePage extends StatelessWidget {
         title: const Text("Rapid example"),
       ),
       body: const Center(
-        child: Column(
+        child: RapidFlow(
+          styles: "column laptop:row desktop:row",
           children: [
-            RapidContainer(
-              styles: "bg-red-500 mx-9 my-4",
-              child: Center(
-                child: Text(
-                  "This is a rapid container",
-                ),
-              ),
-            ),
+            Todo(title: "This is a todo"),
+            Todo(title: "This is a todo"),
           ],
         ),
       ),
