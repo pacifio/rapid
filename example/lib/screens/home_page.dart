@@ -11,16 +11,17 @@ class HomePage extends StatelessWidget {
         title: const Text("Rapid example"),
       ),
       body: const Center(
-        child: RapidContainer(
-          width: 200,
-          height: 200,
-          styles:
-              "border-8 laptop:border-4 mobile:bg-green-500 tab:bg-yellow-400 laptop:bg-red-500 desktop:bg-pink-500",
-          child: Center(
-            child: Text(
-              "This is a rapid container",
+        child: Column(
+          children: [
+            RapidContainer(
+              styles: "bg-red-500 mx-9 my-4",
+              child: Center(
+                child: Text(
+                  "This is a rapid container",
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

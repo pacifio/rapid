@@ -1,3 +1,71 @@
+class RapidSpacingMetrics {
+  double fromString(String pixel) {
+    if (pixel == "0") {
+      return 0.0;
+    } else if (pixel == "1") {
+      return 4.0;
+    } else if (pixel == "2") {
+      return 8.0;
+    } else if (pixel == "3") {
+      return 12.0;
+    } else if (pixel == "4") {
+      return 16.0;
+    } else if (pixel == "5") {
+      return 20.0;
+    } else if (pixel == "6") {
+      return 24.0;
+    } else if (pixel == "7") {
+      return 28.0;
+    } else if (pixel == "8") {
+      return 32.0;
+    } else if (pixel == "9") {
+      return 36.0;
+    } else if (pixel == "10") {
+      return 40.0;
+    } else if (pixel == "11") {
+      return 44.0;
+    } else if (pixel == "12") {
+      return 48.0;
+    } else if (pixel == "14") {
+      return 56.0;
+    } else if (pixel == "16") {
+      return 64.0;
+    } else if (pixel == "20") {
+      return 80.0;
+    } else if (pixel == "24") {
+      return 96.0;
+    } else if (pixel == "28") {
+      return 112.0;
+    } else if (pixel == "32") {
+      return 128.0;
+    } else if (pixel == "36") {
+      return 144.0;
+    } else if (pixel == "40") {
+      return 160.0;
+    } else if (pixel == "44") {
+      return 176.0;
+    } else if (pixel == "48") {
+      return 192.0;
+    } else if (pixel == "52") {
+      return 208.0;
+    } else if (pixel == "56") {
+      return 224.0;
+    } else if (pixel == "60") {
+      return 240.0;
+    } else if (pixel == "64") {
+      return 256.0;
+    } else if (pixel == "72") {
+      return 288.0;
+    } else if (pixel == "80") {
+      return 320.0;
+    } else if (pixel == "96") {
+      return 384.0;
+    }
+
+    return 0.0;
+  }
+}
+
 class RapidContainerConfigurations {
   static const List<String> acceptedBackgroundColors = [
     // solid colors
@@ -515,13 +583,152 @@ class RapidContainerConfigurations {
   ];
 
   static const List<String> acceptedSpacing = [
-    "p-0",
+    // padding x
+    "px-0",
+    "px-1",
+    "px-2",
+    "px-3",
+    "px-4",
+    "px-5",
+    "px-6",
+    "px-7",
+    "px-8",
+    "px-9",
+    "px-10",
+    "px-11",
+    "px-12",
+    "px-14",
+    "px-16",
+    "px-20",
+    "px-24",
+    "px-28",
+    "px-32",
+    "px-36",
+    "px-40",
+    "px-44",
+    "px-48",
+    "px-52",
+    "px-56",
+    "px-60",
+    "px-64",
+    "px-72",
+    "px-80",
+    "px-96",
+
+    // padding y
+    "py-0",
+    "py-1",
+    "py-2",
+    "py-3",
+    "py-4",
+    "py-5",
+    "py-6",
+    "py-7",
+    "py-8",
+    "py-9",
+    "py-10",
+    "py-11",
+    "py-12",
+    "py-14",
+    "py-16",
+    "py-20",
+    "py-24",
+    "py-28",
+    "py-32",
+    "py-36",
+    "py-40",
+    "py-44",
+    "py-48",
+    "py-52",
+    "py-56",
+    "py-60",
+    "py-64",
+    "py-72",
+    "py-80",
+    "py-96",
+
+    // margin x
+    "mx-0",
+    "mx-1",
+    "mx-2",
+    "mx-3",
+    "mx-4",
+    "mx-5",
+    "mx-6",
+    "mx-7",
+    "mx-8",
+    "mx-9",
+    "mx-10",
+    "mx-11",
+    "mx-12",
+    "mx-14",
+    "mx-16",
+    "mx-20",
+    "mx-24",
+    "mx-28",
+    "mx-32",
+    "mx-36",
+    "mx-40",
+    "mx-44",
+    "mx-48",
+    "mx-52",
+    "mx-56",
+    "mx-60",
+    "mx-64",
+    "mx-72",
+    "mx-80",
+    "mx-96",
+
+    // margin y
+    "my-0",
+    "my-1",
+    "my-2",
+    "my-3",
+    "my-4",
+    "my-5",
+    "my-6",
+    "my-7",
+    "my-8",
+    "my-9",
+    "my-10",
+    "my-11",
+    "my-12",
+    "my-14",
+    "my-16",
+    "my-20",
+    "my-24",
+    "my-28",
+    "my-32",
+    "my-36",
+    "my-40",
+    "my-44",
+    "my-48",
+    "my-52",
+    "my-56",
+    "my-60",
+    "my-64",
+    "my-72",
+    "my-80",
+    "my-96",
   ];
   static const List<String> acceptedShadows = [
-    "shadow-xs",
+    "shadow-sm",
+    "shadow-md",
+    "shadow-lg",
+    "shadow-xl",
+    "shadow-2xl",
+    "shadow-none",
   ];
   static const List<String> acceptedRadius = [
-    "radius-xs",
+    "rounded-none",
+    "rounded-xs",
+    "rounded-sm",
+    "rounded-md",
+    "rounded-lg",
+    "rounded-xl",
+    "rounded-2xl",
+    "rounded-3xl",
+    "rounded-full",
   ];
   static const List<String> acceptedBorders = [
     "border-0",
@@ -538,20 +745,4 @@ class RapidContainerConfigurations {
           RapidContainerConfigurations.acceptedShadows +
           RapidContainerConfigurations.acceptedRadius +
           RapidContainerConfigurations.acceptedBorders;
-
-  static const List<String> acceptedSizePrefix = [
-    "mobile",
-    "tab",
-    "laptop",
-    "desktop",
-  ];
-
-  static const List<String> acceptedStatePrefix = [
-    "hover",
-    "drag",
-  ];
-
-  static final List<String> acceptedPrefix =
-      RapidContainerConfigurations.acceptedSizePrefix +
-          RapidContainerConfigurations.acceptedStatePrefix;
 }

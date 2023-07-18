@@ -28,6 +28,14 @@ class RapidContainer extends StatelessWidget {
       decoration: parser.boxDecoration,
       width: width ?? parser.size?.width,
       height: height ?? parser.size?.height,
+      margin: EdgeInsets.symmetric(
+        horizontal: parser.hMargin,
+        vertical: parser.vMargin,
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: parser.hPadding,
+        vertical: parser.vPadding,
+      ),
       child: LayoutBuilder(builder: (context, constrains) {
         parser.updateBoxConstraints(constrains);
         return ConstrainedBox(
