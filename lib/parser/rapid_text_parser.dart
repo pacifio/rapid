@@ -10,6 +10,7 @@ enum RapidTextStyleType {
   fontWeight,
   decoration,
   textSize,
+  textAlignment,
   none,
 }
 
@@ -22,6 +23,7 @@ class RapidTextParser implements ParserModel {
   final RapidFontWeightMetrics fontWeightMetrics = RapidFontWeightMetrics();
 
   TextStyle textStyle = const TextStyle();
+  TextAlign textAlign = TextAlign.left;
 
   RapidTextParser({
     required this.styles,
@@ -75,6 +77,12 @@ class RapidTextParser implements ParserModel {
           prefix,
           () => _applyTextDecoration(style),
         );
+      } else if (type == RapidTextStyleType.textAlignment) {
+        _applyPrefix(
+          style,
+          prefix,
+          () => _applyTextAlignment(style),
+        );
       }
     }
   }
@@ -106,6 +114,22 @@ class RapidTextParser implements ParserModel {
       textStyle = textStyle.copyWith(decoration: TextDecoration.underline);
     } else if (style == "line-through") {
       textStyle = textStyle.copyWith(decoration: TextDecoration.lineThrough);
+    }
+  }
+
+  void _applyTextAlignment(String style) {
+    if (style == "text-left") {
+      textAlign = TextAlign.left;
+    } else if (style == "text-right") {
+      textAlign = TextAlign.right;
+    } else if (style == "text-center") {
+      textAlign = TextAlign.center;
+    } else if (style == "text-start") {
+      textAlign = TextAlign.start;
+    } else if (style == "text-end") {
+      textAlign = TextAlign.end;
+    } else if (style == "text-justify") {
+      textAlign = TextAlign.justify;
     }
   }
 
@@ -148,6 +172,8 @@ class RapidTextParser implements ParserModel {
       return RapidTextStyleType.textColor;
     } else if (RapidTextConfigurations.acceptedFontWeights.contains(style)) {
       return RapidTextStyleType.fontWeight;
+    } else if (RapidTextConfigurations.acceptedTextAlignments.contains(style)) {
+      return RapidTextStyleType.textAlignment;
     }
 
     return RapidTextStyleType.none;

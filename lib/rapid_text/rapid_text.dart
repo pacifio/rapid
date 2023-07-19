@@ -18,10 +18,12 @@ class RapidText extends StatelessWidget {
           ..parse(
             context,
           );
+
     return Text(
       text,
       key: key,
       style: parser.textStyle,
+      textAlign: parser.textAlign,
     );
   }
 }

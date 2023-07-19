@@ -1,8 +1,3 @@
-## Rapid UI
-
-Flutter rapid ui is a library that allows you to build responsive widgets quickly like tailwindcss.
-
-```dart
 import 'package:flutter/material.dart';
 import 'package:rapid/rapid.dart';
 
@@ -54,4 +49,3 @@ class DemoCard extends StatelessWidget {
     );
   }
 }
-```

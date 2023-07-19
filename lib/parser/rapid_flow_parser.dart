@@ -13,6 +13,7 @@ enum RapidFlowType {
   flow,
   justify,
   items,
+  axis,
   none,
 }
 
@@ -23,11 +24,14 @@ class RapidFlowParser implements ParserModel {
   final RapidPrefixHelper prefixHelper = RapidPrefixHelper();
 
   RapidFlowMech mech = RapidFlowMech.column;
+
   MainAxisAlignment mainAxisAlignment = MainAxisAlignment.start;
   CrossAxisAlignment crossAxisAlignment = CrossAxisAlignment.start;
+  MainAxisSize mainAxisSize = MainAxisSize.max;
 
   final RapidFlowJustifyParser justifyParser = RapidFlowJustifyParser();
   final RapidFlowItemsParser itemsParser = RapidFlowItemsParser();
+  final RapidFlowAxisParser axisParser = RapidFlowAxisParser();
 
   RapidFlowParser({
     required this.styles,
@@ -82,6 +86,14 @@ class RapidFlowParser implements ParserModel {
             crossAxisAlignment = itemsParser.fromString(style);
           },
         );
+      } else if (type == RapidFlowType.axis) {
+        _applyPrefix(
+          style,
+          prefix,
+          () {
+            mainAxisSize = axisParser.fromString(style);
+          },
+        );
       }
     }
   }
@@ -93,12 +105,14 @@ class RapidFlowParser implements ParserModel {
       return Row(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
         children: children,
       );
     } else {
       return Column(
         mainAxisAlignment: mainAxisAlignment,
         crossAxisAlignment: crossAxisAlignment,
+        mainAxisSize: mainAxisSize,
         children: children,
       );
     }
@@ -140,6 +154,8 @@ class RapidFlowParser implements ParserModel {
       return RapidFlowType.justify;
     } else if (RapidFlowConfiguration.acceptedItems.contains(style)) {
       return RapidFlowType.items;
+    } else if (RapidFlowConfiguration.acceptedAxisSize.contains(style)) {
+      return RapidFlowType.axis;
     }
 
     return RapidFlowType.none;

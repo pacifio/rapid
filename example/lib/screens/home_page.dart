@@ -1,6 +1,5 @@
-import 'package:example/screens/todo.dart';
+import 'package:example/screens/card.dart';
 import 'package:flutter/material.dart';
-import 'package:rapid/rapid.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -10,16 +9,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Rapid example"),
+        elevation: 0.0,
+        backgroundColor: Colors.grey.shade800,
       ),
-      body: const Center(
-        child: RapidFlow(
-          styles: "column laptop:row desktop:row",
-          children: [
-            Todo(title: "This is a todo"),
-            Todo(title: "This is a todo"),
-          ],
-        ),
-      ),
+      body: const DemoCard(),
     );
   }
 }

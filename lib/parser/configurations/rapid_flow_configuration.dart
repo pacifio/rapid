@@ -36,6 +36,18 @@ class RapidFlowItemsParser {
   }
 }
 
+class RapidFlowAxisParser {
+  MainAxisSize fromString(String size) {
+    if (size == "axis-max") {
+      return MainAxisSize.max;
+    } else if (size == "axis-min") {
+      return MainAxisSize.min;
+    }
+
+    return MainAxisSize.max;
+  }
+}
+
 class RapidFlowConfiguration {
   static const List<String> acceptedFLowTypes = [
     "row",
@@ -59,8 +71,14 @@ class RapidFlowConfiguration {
     "items-stretch",
   ];
 
+  static const List<String> acceptedAxisSize = [
+    "axis-min",
+    "axis-max",
+  ];
+
   static final List<String> acceptedStyles =
       RapidFlowConfiguration.acceptedFLowTypes +
           RapidFlowConfiguration.acceptedJustify +
-          RapidFlowConfiguration.acceptedItems;
+          RapidFlowConfiguration.acceptedItems +
+          RapidFlowConfiguration.acceptedAxisSize;
 }

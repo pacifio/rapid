@@ -352,9 +352,19 @@ class RapidTextConfigurations {
     "line-through",
   ];
 
+  static const List<String> acceptedTextAlignments = [
+    "text-left",
+    "text-right",
+    "text-center",
+    "text-start",
+    "text-end",
+    "text-justify"
+  ];
+
   static final List<String> acceptedStyles =
       RapidTextConfigurations.acceptedTextColors +
           RapidTextConfigurations.acceptedFontWeights +
           RapidTextConfigurations.acceptedTextSizes +
-          RapidTextConfigurations.acceptedTextDecorations;
+          RapidTextConfigurations.acceptedTextDecorations +
+          RapidTextConfigurations.acceptedTextAlignments;
 }
