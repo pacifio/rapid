@@ -11,6 +11,9 @@ enum RapidTextStyleType {
   decoration,
   textSize,
   textAlignment,
+  lineHeight,
+  letterSpacing,
+  textTransforms,
   none,
 }
 
@@ -21,14 +24,24 @@ class RapidTextParser implements ParserModel {
   final RapidPrefixHelper prefixHelper = RapidPrefixHelper();
   final RapidTextSizeMetrics textSizeMetrics = RapidTextSizeMetrics();
   final RapidFontWeightMetrics fontWeightMetrics = RapidFontWeightMetrics();
+  final RapidLineHeightSpacingMetrics lineHeightSpacingMetrics =
+      RapidLineHeightSpacingMetrics();
+  final RapidLetterSpacingMetrics letterSpacingMetrics =
+      RapidLetterSpacingMetrics();
 
   TextStyle textStyle = const TextStyle();
   TextAlign textAlign = TextAlign.left;
 
+  String text;
+  late String modiefiedText;
+
   RapidTextParser({
     required this.styles,
     required this.context,
-  });
+    required this.text,
+  }) {
+    modiefiedText = text;
+  }
 
   @override
   void parse(BuildContext context) {
@@ -83,6 +96,24 @@ class RapidTextParser implements ParserModel {
           prefix,
           () => _applyTextAlignment(style),
         );
+      } else if (type == RapidTextStyleType.lineHeight) {
+        _applyPrefix(
+          style,
+          prefix,
+          () => _applyLineHeight(style),
+        );
+      } else if (type == RapidTextStyleType.letterSpacing) {
+        _applyPrefix(
+          style,
+          prefix,
+          () => _applyLetterSpacing(style),
+        );
+      } else if (type == RapidTextStyleType.textTransforms) {
+        _applyPrefix(
+          style,
+          prefix,
+          () => _applyTextTransforms(style),
+        );
       }
     }
   }
@@ -133,6 +164,40 @@ class RapidTextParser implements ParserModel {
     }
   }
 
+  void _applyTextTransforms(String style) {
+    if (style == "uppercase") {
+      modiefiedText = text.toUpperCase();
+    } else if (style == "lowercase") {
+      modiefiedText = text.toLowerCase();
+    } else if (style == "capitalize") {
+      modiefiedText = text[0].toUpperCase() + text.substring(1).toLowerCase();
+    } else if (style == "normal-case") {
+      modiefiedText = text;
+    }
+  }
+
+  void _applyLetterSpacing(String style) {
+    try {
+      final size = style.split("-")[1];
+      textStyle = textStyle.copyWith(
+        letterSpacing: letterSpacingMetrics.fromString(size),
+      );
+    } on RangeError catch (_) {
+      return;
+    }
+  }
+
+  void _applyLineHeight(String style) {
+    try {
+      final size = style.split("-")[1];
+      textStyle = textStyle.copyWith(
+        height: lineHeightSpacingMetrics.fromString(size),
+      );
+    } on RangeError catch (_) {
+      return;
+    }
+  }
+
   void _applyPrefix(String style, String? prefix, Function applier) {
     if (prefix != null) {
       final RapidPrefixType prefixType =
@@ -174,6 +239,12 @@ class RapidTextParser implements ParserModel {
       return RapidTextStyleType.fontWeight;
     } else if (RapidTextConfigurations.acceptedTextAlignments.contains(style)) {
       return RapidTextStyleType.textAlignment;
+    } else if (RapidTextConfigurations.acceptedLineHeight.contains(style)) {
+      return RapidTextStyleType.lineHeight;
+    } else if (RapidTextConfigurations.acceptedLetterSpacing.contains(style)) {
+      return RapidTextStyleType.letterSpacing;
+    } else if (RapidTextConfigurations.acceptedTextTransforms.contains(style)) {
+      return RapidTextStyleType.textTransforms;
     }
 
     return RapidTextStyleType.none;

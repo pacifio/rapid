@@ -12,6 +12,7 @@ enum RapidContainerStyleType {
   shadows,
   radius,
   borders,
+  size,
   none,
 }
 
@@ -22,13 +23,20 @@ class RapidContainerParser implements ParserModel {
   final RapidPrefixHelper prefixHelper = RapidPrefixHelper();
   final RapidSpacingMetrics spacingMetrics = RapidSpacingMetrics();
 
-  Size? size;
+  double? width;
+  double? height;
+
   BoxConstraints? boxConstraints;
 
-  double hPadding = 0.0;
-  double vPadding = 0.0;
-  double hMargin = 0.0;
-  double vMargin = 0.0;
+  double pt = 0.0;
+  double pb = 0.0;
+  double pl = 0.0;
+  double pr = 0.0;
+
+  double mt = 0.0;
+  double mb = 0.0;
+  double ml = 0.0;
+  double mr = 0.0;
 
   BoxDecoration boxDecoration = const BoxDecoration();
 
@@ -77,6 +85,8 @@ class RapidContainerParser implements ParserModel {
         );
       } else if (type == RapidContainerStyleType.spacing) {
         _applyPrefix(style, prefix, () => parseSpacing(style));
+      } else if (type == RapidContainerStyleType.size) {
+        _applyPrefix(style, prefix, () => parseSize(style));
       } else if (type == RapidContainerStyleType.shadows) {
         _applyPrefix(
           style,
@@ -144,6 +154,8 @@ class RapidContainerParser implements ParserModel {
       return RapidContainerStyleType.radius;
     } else if (RapidContainerConfigurations.acceptedBorders.contains(style)) {
       return RapidContainerStyleType.borders;
+    } else if (RapidContainerConfigurations.acceptedSizes.contains(style)) {
+      return RapidContainerStyleType.size;
     }
 
     return RapidContainerStyleType.none;
@@ -223,6 +235,35 @@ class RapidContainerParser implements ParserModel {
         applyHMargin(size);
       } else if (style.startsWith("my")) {
         applyVMargin(size);
+      } else if (style.startsWith("pl")) {
+        pl = spacingMetrics.fromString(size);
+      } else if (style.startsWith("pr")) {
+        pr = spacingMetrics.fromString(size);
+      } else if (style.startsWith("pt")) {
+        pt = spacingMetrics.fromString(size);
+      } else if (style.startsWith("pb")) {
+        pb = spacingMetrics.fromString(size);
+      } else if (style.startsWith("ml")) {
+        ml = spacingMetrics.fromString(size);
+      } else if (style.startsWith("mr")) {
+        mr = spacingMetrics.fromString(size);
+      } else if (style.startsWith("mt")) {
+        mt = spacingMetrics.fromString(size);
+      } else if (style.startsWith("mb")) {
+        mb = spacingMetrics.fromString(size);
+      }
+    } on RangeError catch (_) {
+      return;
+    }
+  }
+
+  void parseSize(String style) {
+    try {
+      final size = style.split("-")[1];
+      if (style.startsWith("w")) {
+        width = spacingMetrics.fromString(size);
+      } else if (style.startsWith("h")) {
+        height = spacingMetrics.fromString(size);
       }
     } on RangeError catch (_) {
       return;
@@ -230,19 +271,23 @@ class RapidContainerParser implements ParserModel {
   }
 
   void applyHPadding(String size) {
-    hPadding = spacingMetrics.fromString(size);
+    pr = spacingMetrics.fromString(size);
+    pl = spacingMetrics.fromString(size);
   }
 
   void applyVPadding(String size) {
-    vPadding = spacingMetrics.fromString(size);
+    pt = spacingMetrics.fromString(size);
+    pb = spacingMetrics.fromString(size);
   }
 
   void applyHMargin(String size) {
-    hMargin = spacingMetrics.fromString(size);
+    mr = spacingMetrics.fromString(size);
+    ml = spacingMetrics.fromString(size);
   }
 
   void applyVMargin(String size) {
-    vMargin = spacingMetrics.fromString(size);
+    mt = spacingMetrics.fromString(size);
+    mb = spacingMetrics.fromString(size);
   }
 
   void updateBoxConstraints(BoxConstraints constraints) {
@@ -359,6 +404,7 @@ class RapidContainerParser implements ParserModel {
   }
 
   void updateSize(double width, double height) {
-    size = Size(width, height);
+    this.width = width;
+    this.height = height;
   }
 }

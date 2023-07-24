@@ -34,6 +34,62 @@ class RapidTextSizeMetrics {
   }
 }
 
+class RapidLineHeightSpacingMetrics {
+  double fromString(String size) {
+    if (size == "3") {
+      return 0.3;
+    } else if (size == "4") {
+      return 0.4;
+    } else if (size == "5") {
+      return 0.5;
+    } else if (size == "6") {
+      return 0.6;
+    } else if (size == "7") {
+      return 0.7;
+    } else if (size == "8") {
+      return 0.8;
+    } else if (size == "9") {
+      return 0.9;
+    } else if (size == "10") {
+      return 1.0;
+    } else if (size == "none") {
+      return 0.0;
+    } else if (size == "tight") {
+      return 0.6;
+    } else if (size == "snug") {
+      return 0.8;
+    } else if (size == "normal") {
+      return 1.0;
+    } else if (size == "relaxed") {
+      return 1.5;
+    } else if (size == "loose") {
+      return 1.8;
+    }
+
+    return 16.0;
+  }
+}
+
+class RapidLetterSpacingMetrics {
+  double fromString(String size) {
+    if (size == "tighter") {
+      return -0.8;
+    } else if (size == "tight") {
+      return -0.4;
+    } else if (size == "normal") {
+      return 0.0;
+    } else if (size == "wide") {
+      return 0.4;
+    } else if (size == "wider") {
+      return 0.8;
+    } else if (size == "widest") {
+      return 1.6;
+    }
+
+    return 0.0;
+  }
+}
+
 class RapidFontWeightMetrics {
   FontWeight fromString(String metrics) {
     if (metrics == "thin") {
@@ -361,10 +417,46 @@ class RapidTextConfigurations {
     "text-justify"
   ];
 
+  static const List<String> acceptedLetterSpacing = [
+    "tracking-tighter",
+    "tracking-tight",
+    "tracking-normal",
+    "tracking-wide",
+    "tracking-wider",
+    "tracking-widest",
+  ];
+
+  static const List<String> acceptedLineHeight = [
+    "leading-3",
+    "leading-4",
+    "leading-5",
+    "leading-6",
+    "leading-7",
+    "leading-8",
+    "leading-9",
+    "leading-10",
+    "leading-none",
+    "leading-tight",
+    "leading-snug",
+    "leading-normal",
+    "leading-relaxed",
+    "leading-loose",
+  ];
+
+  static const List<String> acceptedTextTransforms = [
+    "uppercase",
+    "lowercase",
+    "capitalize",
+    "normal-case"
+  ];
+
   static final List<String> acceptedStyles =
       RapidTextConfigurations.acceptedTextColors +
           RapidTextConfigurations.acceptedFontWeights +
           RapidTextConfigurations.acceptedTextSizes +
           RapidTextConfigurations.acceptedTextDecorations +
-          RapidTextConfigurations.acceptedTextAlignments;
+          RapidTextConfigurations.acceptedTextAlignments +
+          RapidTextConfigurations.acceptedLetterSpacing +
+          RapidTextConfigurations.acceptedLineHeight +
+          acceptedTextTransforms;
 }

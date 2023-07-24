@@ -13,14 +13,16 @@ class RapidText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RapidTextParser parser =
-        RapidTextParser(styles: styles, context: context)
-          ..parse(
-            context,
-          );
+    final RapidTextParser parser = RapidTextParser(
+      styles: styles,
+      context: context,
+      text: text,
+    )..parse(
+        context,
+      );
 
     return Text(
-      text,
+      parser.modiefiedText,
       key: key,
       style: parser.textStyle,
       textAlign: parser.textAlign,

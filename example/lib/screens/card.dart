@@ -8,41 +8,50 @@ class DemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Center(
       child: RapidContainer(
-        styles: "px-4 py-4 mx-8 my-8 bg-grey-900 rounded-md shadow-sm",
+        styles:
+            "px-4 py-4 mx-8 my-8 bg-grey-900 rounded-lg shadow-sm laptop:px-0 laptop:py-0",
         child: RapidFlow(
           styles: "column items-center axis-min laptop:row desktop:row",
           children: [
-            CircleAvatar(
-              backgroundColor: Colors.grey,
+            RapidContainer(
+              styles:
+                  "w-16 h-16 laptop:w-32 laptop:h-40 rounded-full desktop:rect bg-grey-800 laptop:rounded-md",
+              child: SizedBox(),
             ),
             SizedBox(
               height: 16,
             ),
-            RapidFlow(
-              styles:
-                  "column items-center axis-min laptop:items-start desktop:items-start",
-              children: [
-                RapidText(
-                  text:
-                      "Rapid allows flutter developers to create responsive sharable widgets in record time",
-                  styles: "text-center text-white",
-                ),
-                SizedBox(
-                  height: 12,
-                ),
-                RapidText(
-                  text: "Adib Mohsin",
-                  styles: "text-blue",
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-                RapidText(
-                  text: "Layopay",
-                  styles: "text-grey-500",
-                ),
-              ],
-            )
+            RapidContainer(
+                styles: "laptop:px-8",
+                child: RapidFlow(
+                  styles:
+                      "column items-center axis-min laptop:items-start desktop:items-start",
+                  children: [
+                    RapidContainer(
+                      styles: "laptop:w-96",
+                      child: RapidText(
+                        text:
+                            "Rapid allows flutter developers to create responsive sharable widgets in record time with utility first tailwind like classes",
+                        styles:
+                            "text-center text-white text-md laptop:text-left laptop:leading-relaxed",
+                      ),
+                    ),
+                    RapidContainer(
+                      styles: "pt-4",
+                      child: RapidText(
+                        text: "Adib Mohsin",
+                        styles: "text-blue",
+                      ),
+                    ),
+                    RapidContainer(
+                      styles: "pt-1",
+                      child: RapidText(
+                        text: "layopay",
+                        styles: "text-grey-500 uppercase text-xs",
+                      ),
+                    )
+                  ],
+                )),
           ],
         ),
       ),

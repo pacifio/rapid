@@ -39,12 +39,9 @@ class RapidPrefixHelper {
     final Size deviceSize = MediaQuery.of(context).size;
     if (deviceSize.width < 600 && prefixType == RapidPrefixType.mobile) {
       applier();
-    } else if (deviceSize.width > 600 &&
-        deviceSize.width < 1280 &&
-        prefixType == RapidPrefixType.tab) {
+    } else if (deviceSize.width > 600 && prefixType == RapidPrefixType.tab) {
       applier();
     } else if (deviceSize.width > 1200 &&
-        deviceSize.width < 1400 &&
         prefixType == RapidPrefixType.laptop) {
       applier();
     } else if (deviceSize.width > 1400 &&
