@@ -1,5 +1,7 @@
 ## Rapid UI
 
+<img alt="Rapid banner" src="./banner/banner.jpg" />
+
 Flutter rapid ui is a library that allows you to build responsive widgets quickly like tailwindcss.
 
 Rapid allows flutter developers to create responsive sharable widgets in record time with utility first tailwind like classes.
