@@ -4,6 +4,8 @@ Flutter rapid ui is a library that allows you to build responsive widgets quickl
 
 Rapid allows flutter developers to create responsive sharable widgets in record time with utility first tailwind like classes.
 
+[Check out the documentations](https://rapidocs.vercel.app/)
+
 ```dart
 import 'package:flutter/material.dart';
 import 'package:rapid/rapid.dart';

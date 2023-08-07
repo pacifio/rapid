@@ -458,5 +458,5 @@ class RapidTextConfigurations {
           RapidTextConfigurations.acceptedTextAlignments +
           RapidTextConfigurations.acceptedLetterSpacing +
           RapidTextConfigurations.acceptedLineHeight +
-          acceptedTextTransforms;
+          RapidTextConfigurations.acceptedTextTransforms;
 }
